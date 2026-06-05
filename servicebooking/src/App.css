@@ -1,0 +1,187 @@
+body {
+    background-color: #f4f7fc;
+    font-family: "Segoe UI", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #1f2937;
+    color: white;
+    padding: 15px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #60a5fa;
+}
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.booking-table th {
+    background-color: #2563eb;
+    color: white;
+    padding: 14px;
+}
+
+.booking-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.booking-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.btn {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+}
+
+.btn-warning {
+    background-color: #f59e0b;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+}
+
+.status-scheduled {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.status-progress {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.form-container {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.btn-success {
+    background-color: #16a34a;
+}
+
+.btn-success:hover {
+    background-color: #15803d;
+}
+
+.btn-warning {
+    background-color: #f59e0b;
+}
+
+.btn-warning:hover {
+    background-color: #d97706;
+}
+
+.details-card {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.details-card p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #374151;
+}
+
+.details-card strong {
+    color: #111827;
+}

@@ -8,7 +8,6 @@ function ViewBooking() {
     const [booking, setBooking] = useState(null);
 
    
-
     const fetchBooking = async () => {
         try {
             const res = await API.get(`/bookings/${id}`);

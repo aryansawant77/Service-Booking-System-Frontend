@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../services/bookingApi";
+import { toast } from "react-toastify";
 
 function EditBooking() {
     const { id } = useParams();
@@ -56,12 +57,12 @@ function EditBooking() {
         try {
             await API.put(`/bookings/${id}`, formData);
 
-            alert("Booking Updated Successfully");
+            toast.success("Booking Updated Successfully");
 
             navigate("/");
         } catch (error) {
             console.error(error);
-            alert("Failed to update booking");
+            toast.error("Fail to Update Booking");
         }
     };
 
@@ -71,16 +72,14 @@ function EditBooking() {
 
             <form
                 className="form-container"
-                onSubmit={handleSubmit}
-            >
+                onSubmit={handleSubmit}>
                 <label>Customer Name</label>
                 <input
                     type="text"
                     name="customer_name"
                     value={formData.customer_name}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <label>Service Type</label>
                 <input
@@ -88,8 +87,7 @@ function EditBooking() {
                     name="service_type"
                     value={formData.service_type}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <label>Assigned Staff</label>
                 <input
@@ -97,8 +95,7 @@ function EditBooking() {
                     name="assigned_staff"
                     value={formData.assigned_staff}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <label>Booking Date</label>
                 <input
@@ -106,8 +103,7 @@ function EditBooking() {
                     name="booking_date"
                     value={formData.booking_date}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <label>Booking Time</label>
                 <input
@@ -115,15 +111,13 @@ function EditBooking() {
                     name="booking_time"
                     value={formData.booking_time}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <label>Service Description</label>
                 <textarea
                     name="service_description"
                     value={formData.service_description}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange}/>
 
                 <label>Status</label>
                 <select
@@ -143,15 +137,12 @@ function EditBooking() {
                     name="service_fee"
                     value={formData.service_fee}
                     onChange={handleChange}
-                    required
-                />
+                    required/>
 
                 <button
                     className="btn btn-warning"
-                    type="submit"
-                >
-                    Update Booking
-                </button>
+                    type="submit">
+                    Update Booking </button>
             </form>
         </div>
     );

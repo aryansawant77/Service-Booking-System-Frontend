@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../services/bookingApi";
+import {toast} from "react-toastify"
 
 function BookingList() {
     const [bookings, setBookings] = useState([]);
@@ -23,8 +24,10 @@ function BookingList() {
 
         try {
             await API.delete(`/bookings/${id}`);
+            toast.success("Booking Deleted Successfully");
             fetchBookings();
         } catch (error) {
+            toast.error("Failed to delete booking");
             console.error(error);
         }
     };
@@ -59,9 +62,7 @@ function BookingList() {
                                 <td>{booking.service_type}</td>
                                 <td>{booking.assigned_staff}</td>
 
-                                <td>
-                                    <span>{booking.status}</span>
-                                </td>
+                                <td>{booking.status}</td>
                                 <td>{booking.service_fee}</td>
                                 <td>
                                     <Link
@@ -101,3 +102,6 @@ function BookingList() {
 }
 
 export default BookingList;
+
+
+

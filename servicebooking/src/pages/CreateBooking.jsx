@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/bookingApi";
+import { toast } from "react-toastify";
 
 function CreateBooking() {
     const navigate = useNavigate();
@@ -28,12 +29,12 @@ function CreateBooking() {
         try {
             await API.post("/bookings", formData);
 
-            alert("Booking Created Successfully");
+            toast.success("Booking Created Successfully");
 
             navigate("/");
         } catch (error) {
             console.error(error);
-            alert("Failed to create booking");
+            toast.error("Failed to create booking");
         }
     };
 
@@ -43,8 +44,7 @@ function CreateBooking() {
 
             <form
                 className="form-container"
-                onSubmit={handleSubmit}
-            >
+                onSubmit={handleSubmit} >
                 <label>Customer Name</label>
                 <input
                     type="text"
@@ -52,8 +52,7 @@ function CreateBooking() {
                     placeholder="Enter customer name"
                     value={formData.customer_name}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <label>Service Type</label>
                 <input
@@ -62,8 +61,7 @@ function CreateBooking() {
                     placeholder="Enter service type"
                     value={formData.service_type}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <label>Assigned Staff</label>
                 <input
@@ -72,8 +70,7 @@ function CreateBooking() {
                     placeholder="Enter staff name"
                     value={formData.assigned_staff}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <label>Booking Date</label>
                 <input
@@ -81,8 +78,7 @@ function CreateBooking() {
                     name="booking_date"
                     value={formData.booking_date}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <label>Booking Time</label>
                 <input
@@ -90,16 +86,14 @@ function CreateBooking() {
                     name="booking_time"
                     value={formData.booking_time}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <label>Service Description</label>
                 <textarea
                     name="service_description"
                     placeholder="Enter service description"
                     value={formData.service_description}
-                    onChange={handleChange}
-                />
+                    onChange={handleChange} />
 
                 <label>Service Fee (₹)</label>
                 <input
@@ -108,15 +102,12 @@ function CreateBooking() {
                     placeholder="Enter service fee"
                     value={formData.service_fee}
                     onChange={handleChange}
-                    required
-                />
+                    required />
 
                 <button
                     className="btn btn-success"
-                    type="submit"
-                >
-                    Create Booking
-                </button>
+                    type="submit">
+                    Create Booking </button>
             </form>
         </div>
     );

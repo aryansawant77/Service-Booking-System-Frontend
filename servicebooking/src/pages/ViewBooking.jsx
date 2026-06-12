@@ -54,7 +54,9 @@ function ViewBooking() {
 
                 <p>
                     <strong>Booking Date:</strong>{" "}
-                    {booking.booking_date}
+                        {booking.booking_date
+                    ? booking.booking_date.split("T")[0]
+                    : ""}
                 </p>
 
                 <p>

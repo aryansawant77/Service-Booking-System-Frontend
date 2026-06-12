@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../services/bookingApi";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 function BookingList() {
     const [bookings, setBookings] = useState([]);
@@ -24,7 +24,9 @@ function BookingList() {
 
         try {
             await API.delete(`/bookings/${id}`);
+
             toast.success("Booking Deleted Successfully");
+
             fetchBookings();
         } catch (error) {
             toast.error("Failed to delete booking");
@@ -48,6 +50,7 @@ function BookingList() {
                         <th>Service</th>
                         <th>Staff</th>
                         <th>Status</th>
+                        <th>Days Until Service</th>
                         <th>Fee (₹)</th>
                         <th>Actions</th>
                     </tr>
@@ -55,42 +58,67 @@ function BookingList() {
 
                 <tbody>
                     {bookings.length > 0 ? (
-                        bookings.map((booking) => (
-                            <tr key={booking.booking_id}>
-                                <td>{booking.booking_id}</td>
-                                <td>{booking.customer_name}</td>
-                                <td>{booking.service_type}</td>
-                                <td>{booking.assigned_staff}</td>
+                        bookings.map((booking) => {
+                            const today = new Date();
 
-                                <td>{booking.status}</td>
-                                <td>{booking.service_fee}</td>
-                                <td>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={`/view/${booking.booking_id}`}>
-                                        View
-                                    </Link>
-                                    <Link
-                                        className="btn btn-warning"
-                                        to={`/edit/${booking.booking_id}`}
-                                    >
-                                        Edit
-                                    </Link>
+                            const bookingDate = new Date(
+                                booking.booking_date
+                            );
 
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() =>
-                                            handleDelete(booking.booking_id)
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
+                            const daysUntilService = Math.ceil(
+                                (bookingDate - today) /
+                                    (1000 * 60 * 60 * 24)
+                            );
+
+                            return (
+                                <tr key={booking.booking_id}>
+                                    <td>{booking.booking_id}</td>
+                                    <td>{booking.customer_name}</td>
+                                    <td>{booking.service_type}</td>
+                                    <td>{booking.assigned_staff}</td>
+
+                                    <td>{booking.status}</td>
+
+                                    <td>
+                                        {daysUntilService <= 0
+                                            ? "Past Due"
+                                            : daysUntilService}
+                                    </td>
+
+                                    <td>{booking.service_fee}</td>
+
+                                    <td>
+                                        <Link
+                                            className="btn btn-primary"
+                                            to={`/view/${booking.booking_id}`}
+                                        >
+                                            View
+                                        </Link>
+
+                                        <Link
+                                            className="btn btn-warning"
+                                            to={`/edit/${booking.booking_id}`}
+                                        >
+                                            Edit
+                                        </Link>
+
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() =>
+                                                handleDelete(
+                                                    booking.booking_id
+                                                )
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })
                     ) : (
                         <tr>
-                            <td colSpan="7">
+                            <td colSpan="8">
                                 No bookings found.
                             </td>
                         </tr>
@@ -102,6 +130,3 @@ function BookingList() {
 }
 
 export default BookingList;
-
-
-
